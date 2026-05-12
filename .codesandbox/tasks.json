@@ -1,0 +1,12 @@
+{
+  "tasks": {
+    "start": {
+      "name": "Serve static files",
+      "command": "npm start",
+      "runAtStart": true,
+      "preview": {
+        "port": 3000
+      }
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "name": "briggs-face-animation",
+  "private": true,
+  "scripts": {
+    "start": "npx --yes serve -p 3000 -L ."
+  }
+}
