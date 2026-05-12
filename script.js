@@ -2,7 +2,8 @@
 // 1. Paste the public URL to your .riv file here.
 //    Example (GitHub raw): https://raw.githubusercontent.com/USER/REPO/main/briggs_face_animations.riv
 // ============================================================
-const RIV_FILE_URL = "REPLACE_WITH_PUBLIC_URL_TO_BRIGGS_FACE_ANIMATIONS_RIV";
+const RIV_FILE_URL =
+  "https://raw.githubusercontent.com/adet0m1wa/briggs-face-animation/main/briggs_face_animations.riv";
 
 const ARTBOARD = "animation";
 const STATE_MACHINE = "State Machine 1";
