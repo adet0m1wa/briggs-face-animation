@@ -1,12 +1,17 @@
-// ============================================================
-// 1. Paste the public URL to your .riv file here.
-//    Example (GitHub raw): https://raw.githubusercontent.com/USER/REPO/main/briggs_face_animations.riv
-// ============================================================
 const RIV_FILE_URL =
   "https://raw.githubusercontent.com/adet0m1wa/briggs-face-animation/main/briggs_face_animations.riv";
 
 const ARTBOARD = "animation";
 const STATE_MACHINE = "State Machine 1";
+
+const TRIGGER_NAMES = [
+  "toDefault",
+  "toAgree",
+  "toThinking",
+  "toConfused",
+  "toSad",
+  "toListening",
+];
 
 const canvas = document.getElementById("rive-canvas");
 const statusEl = document.getElementById("status");
@@ -34,26 +39,32 @@ const riveInstance = new rive.Rive({
   artboard: ARTBOARD,
   stateMachines: [STATE_MACHINE],
   autoplay: true,
+  autoBind: true,
   onLoad: () => {
     riveInstance.resizeDrawingSurfaceToCanvas();
 
-    const inputs = riveInstance.stateMachineInputs(STATE_MACHINE);
-    console.log("State machine inputs:", inputs.map((i) => i.name));
+    const vmi = riveInstance.viewModelInstance;
+    if (!vmi) {
+      console.warn("View model instance not bound — check default VM in Rive.");
+      return;
+    }
 
     const triggers = {};
-    inputs.forEach((input) => {
-      triggers[input.name] = input;
+    TRIGGER_NAMES.forEach((name) => {
+      const prop = vmi.trigger(name);
+      if (prop) triggers[name] = prop;
     });
+
+    console.log("View-model triggers bound:", Object.keys(triggers));
 
     buttons.forEach((btn) => {
       const name = btn.dataset.trigger;
-      const trigger = triggers[name];
-      if (!trigger) {
-        console.warn(`Trigger "${name}" not found on state machine`);
+      const prop = triggers[name];
+      if (!prop) {
         btn.disabled = true;
         return;
       }
-      btn.addEventListener("click", () => trigger.fire());
+      btn.addEventListener("click", () => prop.trigger());
     });
 
     setButtonsEnabled(true);
@@ -68,7 +79,6 @@ const riveInstance = new rive.Rive({
   },
 });
 
-// Keep the drawing surface sharp on resize / DPR changes.
 window.addEventListener("resize", () => {
   if (riveInstance) riveInstance.resizeDrawingSurfaceToCanvas();
 });
