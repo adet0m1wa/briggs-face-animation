@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Briggs Face Animation</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="stage">
+    <div class="canvas-wrap">
+      <canvas id="rive-canvas" width="800" height="800"></canvas>
+      <div id="status" class="status">Loading…</div>
+    </div>
+
+    <div class="controls" role="group" aria-label="Briggs emotions">
+      <button class="pill" data-trigger="toDefault">Default</button>
+      <button class="pill" data-trigger="toAgree">Agree</button>
+      <button class="pill" data-trigger="toThinking">Thinking</button>
+      <button class="pill" data-trigger="toConfused">Confused</button>
+      <button class="pill" data-trigger="toSad">Sad</button>
+      <button class="pill" data-trigger="toListening">Listening</button>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/@rive-app/canvas@latest"></script>
+  <script src="script.js"></script>
+</body>
+</html>
