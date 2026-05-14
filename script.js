@@ -1,5 +1,5 @@
 const RIV_FILE_URL =
-  "https://raw.githubusercontent.com/adet0m1wa/briggs-face-animation/main/briggs_face_animations.riv";
+  "https://raw.githubusercontent.com/adet0m1wa/briggs-face-animation/main/briggs_face_animations2.riv";
 
 const ARTBOARD = "animation";
 const STATE_MACHINE = "State Machine 1";
